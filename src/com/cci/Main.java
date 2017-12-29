@@ -55,7 +55,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception{
 	// write your code here
-        String imagePath = "C:\\Users\\Balachandar\\IdeaProjects\\SeamCarvingAlgo\\seamImg.jpeg";
+        String imagePath = ".\\seamImg.jpeg";
         Color[][] pixels = pixelExtractor(imagePath);
         int[][] energy = energyExtractor(pixels);
         for(int i=0;i<pixels.length;i++)
