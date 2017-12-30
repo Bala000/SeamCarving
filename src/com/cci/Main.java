@@ -68,18 +68,6 @@ public class Main {
 
         for(int r=1; r<height-1; r++) {
             for (int c = 1; c < width - 1; c++) {
-                int redX = pixels[r - 1][c].getRed() - pixels[r + 1][c].getRed();
-                redX = redX * redX;
-                int greenX = pixels[r - 1][c].getGreen() - pixels[r + 1][c].getGreen();
-                greenX = greenX * greenX;
-                int blueX = pixels[r - 1][c].getBlue() - pixels[r + 1][c].getBlue();
-                blueX = blueX * blueX;
-                int redY = pixels[r][c - 1].getRed() - pixels[r][c + 1].getRed();
-                redY = redY * redY;
-                int greenY = pixels[r][c - 1].getGreen() - pixels[r][c + 1].getGreen();
-                greenY = greenY * greenY;
-                int blueY = pixels[r][c - 1].getBlue() - pixels[r][c + 1].getBlue();
-                blueY = blueY * blueY;
                 energy[r][c] = calculateEnergy(pixels, r, c, r-1, r+1, c-1, c+1);
             }
         }
@@ -184,11 +172,12 @@ public class Main {
     public static void main(String[] args) throws Exception{
 	// write your code here
         String imagePath = ".\\seamImg.png";
-        int seams = 100;
+        int seams = 300;
         Color[][] pixels = pixelExtractor(imagePath);
         int height = pixels.length;
         int width = pixels[0].length;
 
+        //TODO Need to carve seams intelligently
         while (seams > 0){
             int[][] energy = energyExtractor(pixels, height, width);
             int[][] seamDp = calculateSeams(energy, height, width);
