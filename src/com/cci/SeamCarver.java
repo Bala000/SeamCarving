@@ -18,13 +18,13 @@ public class SeamCarver {
             width--;
         }
 
-        /*ISeamCarver hsc = SeamCarverFactory.Create("h");
+        ISeamCarver hsc = SeamCarverFactory.Create("h");
 
         while (height > newHeight){
             int[][] energy = energyFunction.energyExtractor(pixels, height, width);
             hsc.carveSeam(pixels, energy, height, width);
             height--;
-        }*/
+        }
 
     }
 }

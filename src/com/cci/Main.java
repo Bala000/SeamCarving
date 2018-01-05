@@ -51,9 +51,10 @@ public class Main {
         else {
             imagePath = ".\\seamImg.png";
             Color[][] p = pixelExtractor(imagePath);
-            int seams = 100;
-            newHeight = p.length;
-            newWidth = p[0].length - seams;
+            int vseams = 50;
+            int hseams = 50;
+            newHeight = p.length - hseams;
+            newWidth = p[0].length - vseams;
             outputPath = ".\\output.png";
             energyFunctionTag = "dg";
         }

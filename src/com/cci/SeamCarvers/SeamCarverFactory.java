@@ -6,6 +6,8 @@ public class SeamCarverFactory {
         switch (seamcarverTag){
             case "v":
                 return new VerticalSeamCarver();
+            case "h":
+                return new HorizontalSeamCarver();
             default:
                 throw new RuntimeException("Energy function not found.");
         }
