@@ -1,30 +1,27 @@
 package com.cci;
-import com.cci.EnergyFunctions.EnergyFactory;
-import com.cci.EnergyFunctions.IEnergyFunction;
-import com.cci.SeamCarvers.ISeamCarver;
-import com.cci.SeamCarvers.SeamCarverFactory;
+import com.cci.EnergyFunctions.*;
+import com.cci.SeamCarvers.*;
 
 import java.awt.*;
 
 public class SeamCarver {
-    public static void Run(Color[][] pixels, int height, int width, int newHeight, int newWidth, String energyFunctionTag){
+    public static Color[][] Run(Color[][] pixels, int height, int width, int newHeight, int newWidth, String energyFunctionTag){
+
+        int h = Math.max(height, newHeight);
+        int w = Math.max(width, newWidth);
+
+        Color[][] newPixels = utils.ColorArrayCopy(pixels, h, w);
+
         IEnergyFunction energyFunction = EnergyFactory.Create(energyFunctionTag);
 
-        ISeamCarver vsc = SeamCarverFactory.Create("v");
+        ISeamCarver sc1 = height > newHeight? new SeamRemover() : new SeamInserter();
+        sc1.Run(newPixels, height, width, Math.abs(height-newHeight), energyFunction, true);
+        height = newHeight;
 
-        while (width > newWidth){
-            int[][] energy = energyFunction.energyExtractor(pixels, height, width);
-            vsc.carveSeam(pixels, energy, height, width);
-            width--;
-        }
+        ISeamCarver sc2 = width > newWidth? new SeamRemover() : new SeamInserter();
+        sc2.Run(newPixels, height, width, Math.abs(width-newWidth), energyFunction, false);
+        width = newWidth;
 
-        ISeamCarver hsc = SeamCarverFactory.Create("h");
-
-        while (height > newHeight){
-            int[][] energy = energyFunction.energyExtractor(pixels, height, width);
-            hsc.carveSeam(pixels, energy, height, width);
-            height--;
-        }
-
+        return newPixels;
     }
 }

@@ -5,7 +5,7 @@ public class EnergyFactory {
 
         switch (functionTag){
             case "dg":
-                return new DualGradientEneryFunction();
+                return new DualGradientEnergyFunction();
             default:
                 throw new RuntimeException("Energy function not found.");
         }

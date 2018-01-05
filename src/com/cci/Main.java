@@ -53,8 +53,8 @@ public class Main {
             Color[][] p = pixelExtractor(imagePath);
             int vseams = 50;
             int hseams = 50;
-            newHeight = p.length - hseams;
-            newWidth = p[0].length - vseams;
+            newHeight = p.length + hseams;
+            newWidth = p[0].length + vseams;
             outputPath = ".\\output.png";
             energyFunctionTag = "dg";
         }
@@ -62,8 +62,8 @@ public class Main {
         Color[][] pixels = pixelExtractor(imagePath);
         int height = pixels.length;
         int width = pixels[0].length;
-        SeamCarver.Run(pixels, height, width, newHeight, newWidth, energyFunctionTag);
-        saveImage(outputPath, pixels, newHeight, newWidth);
+        Color[][] newPixels = SeamCarver.Run(pixels, height, width, newHeight, newWidth, energyFunctionTag);
+        saveImage(outputPath, newPixels, newHeight, newWidth);
 
     }
 

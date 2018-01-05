@@ -1,8 +1,9 @@
 package com.cci.SeamCarvers;
 
+import com.cci.EnergyFunctions.IEnergyFunction;
+
 import java.awt.*;
 
 public interface ISeamCarver {
-
-    public void carveSeam(Color[][] pixels, int[][] energy, int height, int width);
+    void Run(Color[][] pixels, int height, int width, int seams, IEnergyFunction energyFunction, boolean isHorizontal);
 }

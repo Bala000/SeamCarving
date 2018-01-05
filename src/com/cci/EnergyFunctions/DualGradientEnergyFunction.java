@@ -2,7 +2,7 @@ package com.cci.EnergyFunctions;
 
 import java.awt.*;
 
-public class DualGradientEneryFunction implements IEnergyFunction {
+public class DualGradientEnergyFunction implements IEnergyFunction {
 
     //energy of pixel (x, y) is Δx2(x, y) + Δy2(x, y)
     //Δx2(x, y) = Rx(x, y)2 + Gx(x, y)2 + Bx(x, y)2
